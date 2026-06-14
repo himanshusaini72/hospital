@@ -1,21 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View My Appointment</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#0ea5e9,#0f172a);
+            padding:20px;
+        }
+
+        .container{
+            width:100%;
+            max-width:500px;
+            background:#fff;
+            padding:40px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,.25);
+        }
+
+        .logo{
+            text-align:center;
+            margin-bottom:25px;
+        }
+
+        .logo h1{
+            color:#0ea5e9;
+            font-size:32px;
+        }
+
+        .logo p{
+            color:#64748b;
+            margin-top:5px;
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:25px;
+            color:#0f172a;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+
+        label{
+            font-weight:600;
+            color:#334155;
+        }
+
+        input{
+            width:100%;
+            padding:15px;
+            border:2px solid #e2e8f0;
+            border-radius:12px;
+            outline:none;
+            font-size:15px;
+            transition:.3s;
+        }
+
+        input:focus{
+            border-color:#0ea5e9;
+            box-shadow:0 0 10px rgba(14,165,233,.25);
+        }
+
+        .btn{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:12px;
+            cursor:pointer;
+            font-size:16px;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .search-btn{
+            background:#0ea5e9;
+            color:white;
+        }
+
+        .search-btn:hover{
+            transform:translateY(-3px);
+            box-shadow:0 10px 20px rgba(14,165,233,.3);
+        }
+
+        .home-btn{
+            margin-top:15px;
+            background:#0f172a;
+            color:white;
+        }
+
+        .home-btn:hover{
+            transform:translateY(-3px);
+        }
+
+        @media(max-width:600px){
+
+            .container{
+                padding:25px;
+            }
+
+            h2{
+                font-size:22px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-    <h2>View My Appointment</h2>
+    <div class="container">
 
-    <form action="view_my_appointment.php" method="POST">
+        <div class="logo">
+            <h1>🏥 Medicare Hospital</h1>
+            <p>View Your Appointment Details</p>
+        </div>
 
-        <label>Enter Phone Number</label>
-        <input type="text" name="phone" required>
+        <h2>Find Your Appointment</h2>
 
-        <button type="submit">Search</button>
+        <form action="view_my_appointment.php" method="POST">
 
-    </form>
-    <button type="submit" onclick="document.location = 'index.html'">Home</button>
+            <div>
+                <label>Enter Phone Number</label>
+                <input
+                    type="text"
+                    name="phone"
+                    placeholder="Enter your registered phone number"
+                    required>
+            </div>
+
+            <button type="submit" class="btn search-btn">
+                Search Appointment
+            </button>
+
+        </form>
+
+        <button
+            type="button"
+            class="btn home-btn"
+            onclick="window.location.href='index.html'">
+
+            Back To Home
+
+        </button>
+
+    </div>
 
 </body>
 </html>
