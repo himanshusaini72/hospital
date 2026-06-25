@@ -179,6 +179,24 @@ if(mysqli_num_rows($result) > 0){
     <p><strong>Time:</strong> <?php echo $row['appointment_time']; ?></p>
 
     <p><strong>Reason:</strong> <?php echo $row['reason']; ?></p>
+    <p>
+<strong>Status:</strong>
+
+<?php
+
+if($row['status']=="Approved"){
+    echo "<span style='color:green'>Approved</span>";
+}
+elseif($row['status']=="Rejected"){
+    echo "<span style='color:red'>Rejected</span>";
+}
+else{
+    echo "<span style='color:orange'>Pending</span>";
+}
+
+?>
+
+</p>
 
     <a href="update_appointment.php?id=<?php echo $row['id']; ?>">
     <button style="

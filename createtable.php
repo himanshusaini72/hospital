@@ -32,6 +32,24 @@ $sql = "CREATE TABLE IF NOT EXISTS appointments (
         echo "Error creating table: " . mysqli_error($conn);
      }
         
+
+     /* Add Status Column */
+$checkColumn = mysqli_query(
+    $conn,
+    "SHOW COLUMNS FROM appointments LIKE 'status'"
+);
+
+if (mysqli_num_rows($checkColumn) == 0) {
+
+    $sql3 = "ALTER TABLE appointments 
+             ADD status VARCHAR(20) DEFAULT 'Pending'";
+
+    if (mysqli_query($conn, $sql3)) {
+        echo "Status column added successfully.<br>";
+    } else {
+        echo "Error adding status column: " . mysqli_error($conn) . "<br>";
+    }
+}
 /* Admin Table */
 
 $sql2 = "CREATE TABLE admins (
