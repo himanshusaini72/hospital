@@ -65,6 +65,20 @@ if(mysqli_query($conn, $sql2)){
     echo "Error creating admins table: " . mysqli_error($conn) . "<br>";
 }
 
+/*doctor management module*/
+
+$sql3 = "CREATE TABLE doctors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_name VARCHAR(100),
+    Specilization VARCHAR(100),
+    Status VARCHAR (100) DEFAULT 'Active'
+    )";
+
+    if (mysqli_query($conn, $sql3)){
+        echo "doctor management module table create successfull.<br>";
+    } else {
+        echo "Error creating doctor management module table: " . mysqli_error($conn) . "<br>";
+    }
 
 /* Default Admin Insert */
 
