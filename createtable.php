@@ -93,9 +93,9 @@ $sql3 = "CREATE TABLE IF NOT EXISTS doctors(
 
     fees DECIMAL(10,2) NOT NULL,
 
-    phone VARCHAR(20) NOT NULL,
+    phone VARCHAR(20) NOT NULL UNIQUE,
 
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
 
     status ENUM('Active','Inactive')
     DEFAULT 'Active',
