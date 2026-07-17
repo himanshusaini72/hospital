@@ -10,6 +10,20 @@ $email = $_POST['email'];
 $phone = $_POST['phone'];
 $address = $_POST['address'];
 $doctor = $_POST['doctor'];
+$doctor = mysqli_real_escape_string($conn,$_POST['doctor']);
+
+$checkDoctor = mysqli_query(
+$conn,
+"SELECT * FROM doctors
+WHERE doctor_name='$doctor'
+AND status='Active'"
+);
+
+if(mysqli_num_rows($checkDoctor)==0){
+
+die("Invalid Doctor Selected.");
+
+}
 $age = $_POST['age'];
 $reason = $_POST['reason'];
 $appointment_date = $_POST['appointment_date'];

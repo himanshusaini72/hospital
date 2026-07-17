@@ -314,10 +314,18 @@
                         <div class="form-group">
                             <label for="doctor">Select Doctor</label>
                             <select id="doctor" name="doctor" required>
-                                <option value="" disabled selected>Choose a Doctor</option>
-                                <option value="dr-sharma">Dr. Sharma (Cardiologist)</option>
-                                <option value="dr-patel">Dr. Patel (Neurologist)</option>
-                                <option value="dr-saini">Dr. Saini (Dermatologist)</option>
+                                <option value="">Select Doctor</option>
+                                <?php 
+                                include 'config.php';
+                                $getDoctors = mysqli_query($conn, "SELECT doctor_name FROM doctorscWHERE status='Active' ORDER BY doctor_name ASC");
+                                while($doctor = mysqli_fetch_assoc($getDoctors)){
+                                ?>
+                                <option value="<?php echo $doctor['doctor_name']; ?>">
+                                    <?php echo $doctor['doctor_name']; ?>
+                                </option>
+                                <?php
+                                    }
+                                ?>
                             </select>
                         </div>
                         <div class="form-row">
