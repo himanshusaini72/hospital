@@ -76,6 +76,28 @@ if(mysqli_query($conn,$sql2)){
     echo mysqli_error($conn)."<br>";
 }
 
+/* ===========================
+   ADD doctor_id COLUMN
+=========================== */
+
+$checkDoctorId = mysqli_query(
+$conn,
+"SHOW COLUMNS FROM appointments LIKE 'doctor_id'"
+);
+
+if(mysqli_num_rows($checkDoctorId)==0){
+
+    $sqlDoctorId = "ALTER TABLE appointments
+                    ADD doctor_id INT NULL AFTER address";
+
+    if(mysqli_query($conn,$sqlDoctorId)){
+        echo "doctor_id column added successfully.<br>";
+    }else{
+        echo mysqli_error($conn)."<br>";
+    }
+
+}
+
 
 /* ===========================
    DOCTORS TABLE

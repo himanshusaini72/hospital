@@ -1,3 +1,10 @@
+<?php
+include 'config.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -313,19 +320,22 @@
                         </div>
                         <div class="form-group">
                             <label for="doctor">Select Doctor</label>
-                            <select id="doctor" name="doctor" required>
+                            <select id="doctor_id" name="doctor_id" required>
                                 <option value="">Select Doctor</option>
                                 <?php 
-                                include 'config.php';
                                 $getDoctors = mysqli_query($conn, "SELECT doctor_name FROM doctors WHERE status='Active' ORDER BY doctor_name ASC");
+                                
                                 while($doctor = mysqli_fetch_assoc($getDoctors)){
-                                ?>
-                                <option value="<?php echo $doctor['doctor_name']; ?>">
-                                    <?php echo $doctor['doctor_name']; ?>
-                                </option>
-                                <?php
+                                    ?>
+                                    
+                                    <option value="<?php echo $doctor['doctor_name']; ?>">
+                                        <?php echo $doctor['doctor_name']; ?>
+                                    </option>
+                                    
+                                    <?php
                                     }
-                                ?>
+                                    ?>
+
                             </select>
                         </div>
                         <div class="form-row">
@@ -336,11 +346,25 @@
                             
                         </div>
                         <div class="form-group">
-                            <label>Select Appointment Date</label>
-                            <input type="date" id="date" name="appointment_date" required>
+                            <label>Appointment Date</label>
+                            <input type="date" id="appointment_date" name="appointment_date" required>
                         </div>
 
-                        <input type="hidden" id="appointment_time" name="appointment_time">
+                        <!-- Dynamic Time Slots -->
+                         
+                        <div class="form-group">                   
+                            <label for="appointment_time">
+                                Available Time Slots
+                            </label>
+                            
+                            <select id="appointment_time" name="appointment_time" required>
+                                <option value="">
+                                    Select Doctor & Date First
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <!-- Reason -->
 
                         <div class="form-group">
                             <label for="reason">Reason for Visit</label>
@@ -354,25 +378,11 @@
                 <div class="booking-info animate-on-scroll animated">
                     <div class="info-card">
                         <h3>Available Time Slots</h3>
-                        <div class="time-slots">
-                            <div class="date-header">Today</div>
-                            <div class="slot available">10:00 AM</div>
-                            <div class="slot available">11:00 AM</div>
-                            <div class="slot available">12:00 PM</div>
-                            <div class="slot available">01:00 PM</div>
-                            <div class="slot available">03:00 PM</div>
-                            <div class="slot available">04:00 PM</div>
-                            <div class="slot available">05:00 PM</div>
-                            
-                        </div>
-                        <div class="legend">
-                            <div class="legend-item">
-                                <span class="dot available"></span> Available
-                            </div>
-                            <div class="legend-item">
-                                <span class="dot booked"></span> Booked
-                            </div>
-                        </div>
+                         <p style="text-align:center;padding:20px;">
+
+            Please select a doctor and appointment date to view available slots.
+
+        </p>
                     </div>
 
                     <div class="info-card">

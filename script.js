@@ -194,5 +194,53 @@ style.textContent = `.slot.selected {
                 }`;
 document.head.appendChild(style);
 
+/* =====================================
+   Dynamic Doctor Time Slots
+===================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const doctor = document.getElementById("doctor_id");
+    const date = document.getElementById("appointment_date");
+    const time = document.getElementById("appointment_time");
+
+    function loadSlots() {
+
+        if (doctor.value == "" || date.value == "") {
+
+            time.innerHTML =
+                "<option value=''>Select Doctor & Date First</option>";
+
+            return;
+        }
+
+        fetch(
+            "get_slots.php?doctor_id=" +
+            doctor.value +
+            "&appointment_date=" +
+            date.value
+        )
+
+        .then(response => response.text())
+
+        .then(data => {
+
+            time.innerHTML = data;
+
+        })
+
+        .catch(error => {
+
+            console.log(error);
+
+        });
+
+    }
+
+    doctor.addEventListener("change", loadSlots);
+
+    date.addEventListener("change", loadSlots);
+
+});
 
 
