@@ -110,6 +110,53 @@ if(mysqli_query($conn,$sql3)){
     echo mysqli_error($conn)."<br>";
 }
 
+/* ===========================
+   DOCTOR SCHEDULE TABLE
+=========================== */
+
+$sql4 = "CREATE TABLE IF NOT EXISTS doctor_schedule(
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    doctor_id INT NOT NULL,
+
+    day ENUM(
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+    ) NOT NULL,
+
+    start_time TIME NOT NULL,
+
+    end_time TIME NOT NULL,
+
+    slot_duration INT NOT NULL DEFAULT 30,
+
+    status ENUM('Active','Inactive')
+    DEFAULT 'Active',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (doctor_id)
+    REFERENCES doctors(id)
+    ON DELETE CASCADE
+
+)";
+
+if(mysqli_query($conn,$sql4)){
+
+    echo "Doctor Schedule table created successfully.<br>";
+
+}else{
+
+    echo "Error creating Doctor Schedule table : "
+    . mysqli_error($conn) . "<br>";
+
+}
 
 /* ===========================
    DEFAULT ADMIN
