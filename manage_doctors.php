@@ -219,24 +219,30 @@ if(mysqli_num_rows($result) > 0){
 
         echo "</td>
 
-        <td>
+<td>
 
-            <a href='edit_doctor.php?id=".$row['id']."'
-               class='edit-btn'>
-               <i class='fa-solid fa-pen-to-square'></i>
-               Edit
-            </a>
+    <a href='edit_doctor.php?id=".$row['id']."'
+       class='edit-btn'>
+       <i class='fa-solid fa-pen-to-square'></i>
+       Edit
+    </a>
 
-            <a href='delete_doctor.php?id=".$row['id']."'
-               class='delete-btn'
-               onclick='return confirm(\"Are you sure you want to delete this doctor?\")'>
-               <i class='fa-solid fa-trash'></i>
-               Delete
-            </a>
+    <a href='delete_doctor.php?id=".$row['id']."'
+       class='delete-btn'
+       onclick='return confirm(\"Are you sure you want to delete this doctor?\")'>
+       <i class='fa-solid fa-trash'></i>
+       Delete
+    </a>
 
-        </td>
+    <a href='doctor_appointments.php?id=".$row['id']."'
+       class='view-btn'>
+       <i class='fa-solid fa-calendar-check'></i>
+       Appointments
+    </a>
 
-        </tr>";
+</td>
+
+</tr>";
 
     }
 

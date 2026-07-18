@@ -317,7 +317,7 @@
                                 <option value="">Select Doctor</option>
                                 <?php 
                                 include 'config.php';
-                                $getDoctors = mysqli_query($conn, "SELECT doctor_name FROM doctorscWHERE status='Active' ORDER BY doctor_name ASC");
+                                $getDoctors = mysqli_query($conn, "SELECT doctor_name FROM doctors WHERE status='Active' ORDER BY doctor_name ASC");
                                 while($doctor = mysqli_fetch_assoc($getDoctors)){
                                 ?>
                                 <option value="<?php echo $doctor['doctor_name']; ?>">

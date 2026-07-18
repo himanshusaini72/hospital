@@ -470,3 +470,17 @@ table{
 }
 
 }
+
+.view-btn{
+    background:#2563eb;
+    color:white;
+    padding:8px 14px;
+    border-radius:6px;
+    text-decoration:none;
+    display:inline-block;
+    margin-top:5px;
+}
+
+.view-btn:hover{
+    background:#1d4ed8;
+}
