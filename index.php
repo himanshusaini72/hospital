@@ -319,25 +319,49 @@ ini_set('display_errors', 1);
                             <input type="text" id="address" name="address" placeholder="Enter your address" required>
                         </div>
                         <div class="form-group">
-                            <label for="doctor">Select Doctor</label>
-                            <select id="doctor_id" name="doctor_id" required>
-                                <option value="">Select Doctor</option>
-                                <?php 
-                                $getDoctors = mysqli_query($conn, "SELECT doctor_name FROM doctors WHERE status='Active' ORDER BY doctor_name ASC");
-                                
-                                while($doctor = mysqli_fetch_assoc($getDoctors)){
-                                    ?>
-                                    
-                                    <option value="<?php echo $doctor['doctor_name']; ?>">
-                                        <?php echo $doctor['doctor_name']; ?>
-                                    </option>
-                                    
-                                    <?php
-                                    }
-                                    ?>
 
-                            </select>
-                        </div>
+<label for="doctor_id">
+    Select Doctor
+</label>
+
+<select id="doctor_id" name="doctor_id" required>
+
+<option value="">
+Select Doctor
+</option>
+
+
+<?php 
+
+$getDoctors = mysqli_query(
+$conn,
+"SELECT id, doctor_name 
+FROM doctors 
+WHERE status='Active'
+ORDER BY doctor_name ASC"
+);
+
+
+while($doctor = mysqli_fetch_assoc($getDoctors)){
+
+?>
+
+<option value="<?php echo $doctor['id']; ?>">
+
+<?php echo $doctor['doctor_name']; ?>
+
+</option>
+
+
+<?php
+
+}
+
+?>
+
+</select>
+
+</div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="date">Age</label>

@@ -43,7 +43,7 @@ if(mysqli_num_rows($check)==0){
 $delete = mysqli_query($conn,
 "DELETE FROM doctors WHERE id='$id'");
 
-if($delete){
+if($delete){ 
 
     header("Location: manage_doctors.php?deleted=1");
     exit();

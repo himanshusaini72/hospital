@@ -214,6 +214,14 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        console.log(
+"Doctor:",
+doctor.value,
+"Date:",
+date.value
+);
+
+
         fetch(
             "get_slots.php?doctor_id=" +
             doctor.value +
