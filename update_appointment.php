@@ -1,15 +1,22 @@
 <?php
 
 include 'config.php';
+if(!isset($_GET['id'])){
 
-$id = $_GET['id'];
+    die("Invalid Appointment ID");
 
-$sql = "SELECT * FROM appointments WHERE id=$id";
+}
 
-$result = mysqli_query($conn, $sql);
+$id = intval($_GET['id']);
+$sql = "SELECT * FROM appointments WHERE id='$id'";
+$result = mysqli_query($conn,$sql);
+if(mysqli_num_rows($result)==0){
+
+    die("Appointment Not Found");
+
+}
 
 $row = mysqli_fetch_assoc($result);
-
 ?>
 
 <!DOCTYPE html>
@@ -182,13 +189,36 @@ $row = mysqli_fetch_assoc($result);
                        required>
             </div>
 
-            <div class="form-group">
-                <label>Doctor</label>
-                <input type="text"
-                       name="doctor"
-                       value="<?php echo $row['doctor']; ?>"
-                       required>
-            </div>
+            <?php
+            
+            $doctorName = "";
+            
+            if(!empty($row['doctor_id'])){
+                $getDoctor = mysqli_query(
+                    $conn,
+                    "SELECT doctor_name FROM doctors WHERE id='".$row['doctor_id']."'");
+                    
+                    
+                    if(mysqli_num_rows($getDoctor)>0){
+                        $doctorData = mysqli_fetch_assoc($getDoctor);
+                        $doctorName = $doctorData['doctor_name'];
+                    }
+                        
+                    }else{
+                            
+                    // old appointments ke liye
+
+                    $doctorName = $row['doctor'];
+                    }
+                ?>
+                    
+                <div class="form-group">
+                    <label>Doctor</label>
+                        
+                    <input type="text" value="<?php echo $doctorName; ?>" readonly>
+                    <input type="hidden" name="doctor_id" value="<?php echo $row['doctor_id']; ?>">
+                </div>
+
 
             <div class="form-group">
                 <label>Age</label>
