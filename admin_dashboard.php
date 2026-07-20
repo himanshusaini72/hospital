@@ -99,6 +99,14 @@ $result = mysqli_query($conn,$sql);
         color:#333;
     }
 
+    .doctor-btn{
+        background:blue;
+        color:white;
+        margin-left: 55%;
+        padding:10px 20px;
+        text-decoration:none;
+        border-radius:5px;
+    }
     .logout-btn{
         background:red;
         color:white;
@@ -200,9 +208,13 @@ $result = mysqli_query($conn,$sql);
 <div class="header">
     <h1>Admin Dashboard</h1>
 
+    <a href="add_doctor.php" class="doctor-btn">
+        Add doctor
+    </a>
     <a href="admin_logout.php" class="logout-btn">
         Logout
     </a>
+    
 </div>
 
 <div class="cards">
