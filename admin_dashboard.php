@@ -57,11 +57,43 @@ $total_records = mysqli_fetch_assoc($total_records_query)['total'];
 $total_pages = ceil($total_records / $limit);
 
 
-$sql = "SELECT * FROM appointments
-        $where
-        ORDER BY created_at DESC";
+$doctor_filter = "";
 
-$result = mysqli_query($conn,$sql);
+
+if(isset($_GET['doctor_id']) && $_GET['doctor_id']!=""){
+
+
+    $doctor_id = $_GET['doctor_id'];
+
+
+    $doctor_query = mysqli_query(
+        $conn,
+        "SELECT doctor_name 
+         FROM doctors 
+         WHERE id='$doctor_id'"
+    );
+
+
+    $doctor_data = mysqli_fetch_assoc($doctor_query);
+
+
+    $doctor_name = $doctor_data['doctor_name'];
+
+
+    $doctor_filter = 
+    " WHERE doctor='$doctor_name' ";
+
+}
+
+
+
+$result = mysqli_query(
+$conn,
+"SELECT * 
+ FROM appointments
+ $doctor_filter
+ ORDER BY id DESC"
+);
 
 
 
@@ -248,16 +280,51 @@ $result = mysqli_query($conn,$sql);
 name="search"
 placeholder="Search by ID or Name">
 
-<select name="doctor">
+<form method="GET">
 
-<option value="">All Doctors</option>
-<option value="dr-sharma">Dr Sharma</option>
-<option value="dr-patel">Dr Patel</option>
-<option value="dr-saini">Dr Saini</option>
+<select name="doctor_id">
+
+<option value="">
+All Doctors
+</option>
+
+
+<?php
+
+$getDoctors=mysqli_query(
+$conn,
+"SELECT id,doctor_name
+ FROM doctors
+ WHERE status='Active'"
+);
+
+
+while($doctor=mysqli_fetch_assoc($getDoctors)){
+
+?>
+
+
+<option value="<?php echo $doctor['id']; ?>">
+
+<?php echo $doctor['doctor_name']; ?>
+
+</option>
+
+
+<?php } ?>
+
 
 </select>
 
-<button type="submit">Search</button>
+
+<button type="submit">
+Search
+</button>
+
+
+</form>
+
+
 
 </form>
 
