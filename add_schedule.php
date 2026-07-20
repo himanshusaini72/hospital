@@ -36,8 +36,7 @@ $doctorQuery = mysqli_query($conn,
                 </h1>
                 <div>
                     <a href="manage_schedule.php" class="back-btn">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        Back
+                        Manage Schedule
                     </a>
                 </div>
             </div>

@@ -108,6 +108,10 @@ if(isset($_POST['save_doctor'])){
                     </h1>
                     <div>
                         <a href="manage_doctors.php" class="back-btn">
+                            <i></i>
+                            Manage Doctor
+                        </a>
+                        <a href="admin_dashboard.php" class="back-btn">
                             <i class="fa-solid fa-arrow-left"></i>
                             Back
                         </a>

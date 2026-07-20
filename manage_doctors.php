@@ -106,6 +106,9 @@ $result = mysqli_query($conn,$sql);
                     </h1>
 
                         <div>
+                            <a href="add_schedule.php" class="back-btn">
+                            Add Schedule
+                            </a>
                             <a href="admin_dashboard.php" class="back-btn">
                             Dashboard
                             </a>
