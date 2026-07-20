@@ -212,7 +212,7 @@ else{
    onclick="return confirm('Are you sure you want to cancel this appointment?');"
    class="cancel-btn">
    Cancel Appointment
-</a>
+    </a>
 </a>
 
 </div>

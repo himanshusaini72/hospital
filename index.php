@@ -381,14 +381,7 @@ ini_set('display_errors', 1);
                 </div>
 
                 <div class="booking-info animate-on-scroll animated">
-                    <div class="info-card">
-                        <h3>Available Time Slots</h3>
-                         <p style="text-align:center;padding:20px;">
-
-            Please select a doctor and appointment date to view available slots.
-
-        </p>
-                    </div>
+                    
 
                     <div class="info-card">
                         <h3>Need Help?</h3>

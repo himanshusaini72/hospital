@@ -92,6 +92,21 @@ $row = mysqli_fetch_assoc($result);
             box-shadow:0 0 10px rgba(14,165,233,.25);
         }
 
+        select{
+            width:100%;
+            padding:14px;
+            border:2px solid #e2e8f0;
+            border-radius:12px;
+            font-size:15px;
+            outline:none;
+            transition:.3s;
+        }
+        
+        select:focus{
+            border-color:#0ea5e9;
+            box-shadow:0 0 10px rgba(14,165,233,.25);
+        }
+
         .update-btn{
             width:100%;
             padding:15px;
@@ -189,35 +204,53 @@ $row = mysqli_fetch_assoc($result);
                        required>
             </div>
 
-            <?php
-            
-            $doctorName = "";
-            
-            if(!empty($row['doctor_id'])){
-                $getDoctor = mysqli_query(
-                    $conn,
-                    "SELECT doctor_name FROM doctors WHERE id='".$row['doctor_id']."'");
-                    
-                    
-                    if(mysqli_num_rows($getDoctor)>0){
-                        $doctorData = mysqli_fetch_assoc($getDoctor);
-                        $doctorName = $doctorData['doctor_name'];
-                    }
-                        
-                    }else{
-                            
-                    // old appointments ke liye
+            <div class="form-group">
 
-                    $doctorName = $row['doctor'];
-                    }
-                ?>
-                    
-                <div class="form-group">
-                    <label>Doctor</label>
-                        
-                    <input type="text" value="<?php echo $doctorName; ?>" readonly>
-                    <input type="hidden" name="doctor_id" value="<?php echo $row['doctor_id']; ?>">
-                </div>
+<label>Select Doctor</label>
+
+<select name="doctor_id" required>
+
+<?php
+
+$getDoctors = mysqli_query(
+$conn,
+"SELECT * FROM doctors
+WHERE status='Active'
+ORDER BY doctor_name ASC"
+);
+
+while($doctor=mysqli_fetch_assoc($getDoctors)){
+
+?>
+
+<option
+value="<?php echo $doctor['id']; ?>"
+
+<?php
+
+if($doctor['id']==$row['doctor_id']){
+
+echo "selected";
+
+}
+
+?>
+
+>
+
+<?php echo $doctor['doctor_name']; ?>
+
+</option>
+
+<?php
+
+}
+
+?>
+
+</select>
+
+</div>
 
 
             <div class="form-group">
