@@ -370,7 +370,6 @@ ini_set('display_errors', 1);
                         </div>
                         
                         <!-- Reason -->
-
                         <div class="form-group">
                             <label for="reason">Reason for Visit</label>
                             <textarea id="reason" name="reason" rows="3" placeholder="Briefly describe your symptoms or reason for appointment"></textarea>
